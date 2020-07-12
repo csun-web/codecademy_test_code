@@ -38,6 +38,26 @@ const pAequorFactory = (specimenNum, dna) => {
     },
     willLikelySurvive() {
       return this.dna.filter(base => base == "C" || base == "G").length / 15 >= .6;
+    },
+    complementStrand() {
+      let comp = [];
+      for (let i = 0; i < 15; i++) {
+        switch(this.dna[i]) {
+          case "A":
+            comp[i] = "T";
+            break;
+          case "T":
+            comp[i] = "A";
+            break;
+          case "C":
+            comp[i] = "G";
+            break;
+          case "G":
+            comp[i] = "C";
+            break;
+        }
+      }
+      return comp;
     }
   }
 }
@@ -53,5 +73,7 @@ while (testBatch.length < 30) {
   sId++;
 }
 
-console.log(testBatch);
+const compStr = testBatch[0].complementStrand();
+console.log(testBatch[0]);
+console.log(compStr);
 
